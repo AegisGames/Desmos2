@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desmos : La rage de Héra</title>
+    <link rel="icon" href="images/fav.png" type="image/png">
+    <link rel="stylesheet" href="style_tele.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body>
+    <section>
+        <input type="checkbox" id="check">
+        <header>
+            <h2><input type="image" src="images/logo.png" class="logo"/></h2>
+            <div class="navigation">
+                <a href="index.html">Home</a>
+                <a href="histoire.html">histoire</a>
+                <a href="a_propos.html">A propos</a>
+                <a href="telechargement.html">Téléchargement</a>
+            </div>
+            <label for="check">
+                <i class="fa fa-bars menu-btn"></i>
+                <i class="fa fa-times close-btn"></i>
+            </label>
+        </header>
+        <div class="content">
+            <div class="info">
+                <h2>Derniere version:</h2>
+                <div class="tel-row">
+                  <a href="">windows</a>
+                  <a href="Desmos_version_mac.zip">mac</a>
+                </div>
+
+            </div>
+        </div>
+<section class="timeline-wrapper">
+    <div class="progress-text">réalisation du jeu</div>
+
+
+    <div class="timeline">
+    <div class="line">
+        <div class="progress-bar"></div>
+    </div>
+    <div class="dot active" data-index="0"></div>
+    <div class="dot" data-index="1"></div>
+    <div class="dot " data-index="2"></div>
+    <div class="dot" data-index="3"></div>
+    <div class="dot" data-index="4"></div>
+  </div>
+
+  <div class="labels">
+    <span class="active">Octobre</span>
+    <span>Novembre</span>
+    <span>Janvier/Fevrier</span>
+    <span>Mars</span>
+    <span>Mai/Juin</span>
+  </div>
+
+  <div class="description">
+    <div class="desc" data-index="0" >
+      <h2>Octobre</h2>
+      <img src="images/timeline1.png" alt="">
+      <p>Début du projet, initialisaton du répertoire github</p>
+      
+    </div>
+    <div class="desc hidden" data-index="1" >
+      <h2>Novembre</h2>
+      <img src="images/timeline2.png" alt="">
+      <p>premières idées, début du site web et du projet unity</p>
+    </div>
+    <div class="desc hidden" data-index="2">
+      <h2>Janvier/Fevrier</h2>
+      <img src="images/Screenshot_2025-03-02_at_17.56.45.png" alt="">
+      <p>création de la map, écriture de l'histoire du jeu et composition des premières musiques</p>
+    </div>
+    <div class="desc hidden" data-index="3" >
+      <h2>Mars</h2>
+      <img src="images/sniveau2apo.png" alt="">
+      <p>ajout du multijoueur et de l'ia</p>
+    </div>
+    <div class="desc hidden" data-index="4" >
+      <h2>Mai/Juin</h2>
+      <img src="images/image.png" alt="">
+      <p>Finalisation du jeu et du site</p>
+    </div>
+  </div>
+  </section>
+
+        <div class="footer">
+            <h2>Suivez desmos</h2>
+            <div class="icons">
+                <a href="discord.gg/Y4kVa3mcQp"><i class="fa-brands fa-discord"></i></a>
+                <a href="https://youtube.com/@desmoslaragedehera?si=hsExeN8y3b-NNcBh"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.instagram.com/d3smos/profilecard/?igsh=MWNlcTlsZXkxbzI2bA=="><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+   <script>
+  const dots = document.querySelectorAll(".dot");
+  const labels = document.querySelectorAll(".labels span");
+  const descriptions = document.querySelectorAll(".desc");
+  const line = document.querySelector(".line::before"); // Won't work directly
+  const lineEl = document.querySelector(".line");
+
+  dots.forEach((dot, selectedIndex) => {
+    dot.addEventListener("click", () => {
+      // Update all dots before and including selected
+      dots.forEach((d, i) => {
+        if (i <= selectedIndex) {
+          d.classList.add("active");
+        } else {
+          d.classList.remove("active");
+        }
+      });
+
+      // Update labels
+      labels.forEach((l, i) => {
+        if (i === selectedIndex) {
+          l.classList.add("active");
+        } else {
+          l.classList.remove("active");
+        }
+      });
+
+      // Show correct description
+      descriptions.forEach(desc => desc.classList.add("hidden"));
+      descriptions[selectedIndex].classList.remove("hidden");
+
+      // Update progress bar width
+      const progress = lineEl.querySelector("::before"); // not valid in JS
+      const totalDots = dots.length - 1;
+      const progressPercentage = (selectedIndex / totalDots) * 100;
+
+      // Workaround: use a separate div inside .line
+      document.querySelector(".line .progress-bar").style.width = `${progressPercentage}%`;
+    });
+  });
+</script>
+
+
+
+</body>
+</html>
